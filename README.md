@@ -8,3 +8,7 @@ https://en.wikipedia.org/wiki/Enigma_machine#/media/File:Enigma_keylist_3_rotor.
 
 Ring setting (ringstellung) and rotor starting position explained here: (easy to confuse them)
 http://users.telenet.be/d.rijmenants/en/enigmatech.htm
+
+Usage:
+`python input.py I II III A 1 2 3 A B C 29`
+`python input.py 29 A A B C`

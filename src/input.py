@@ -83,8 +83,8 @@ def create_curr_rotor_wiring_dict(rotor,ringstellung,starting_pos):
 if(len(sys.argv)!=12 and len(sys.argv)!=6):
 
 	print("Incorrect usage. Please see below for examples.\n")
-	print("Custom configuration: input.py I II III A 1 2 3 A B C 29\n")
-	print("Preset: input.py 29 A A B C")
+	print("Custom configuration: python input.py I II III A 1 2 3 A B C 29\n")
+	print("Preset: python input.py 29 A A B C")
 	sys.exit()
 
 else:
@@ -109,7 +109,7 @@ else:
 		else:
 			sys.exit("Invalid rotor, exiting")
 		left_starting_pos = sys.argv[8]
-		curr_left_rotor = create_curr_rotor_wiring_dict(left_rotor,sys.argv[5],left_starting_pos)
+		curr_left_rotor = create_curr_rotor_wiring_dict(left_rotor,int(sys.argv[5]),left_starting_pos)
 
 		#middle rotor
 		if(sys.argv[2]=='I'):
@@ -130,7 +130,7 @@ else:
 		else:
 			sys.exit("Invalid rotor, exiting")
 		mid_starting_pos = sys.argv[9]
-		curr_mid_rotor = create_curr_rotor_wiring_dict(mid_rotor,sys.argv[6],mid_starting_pos)
+		curr_mid_rotor = create_curr_rotor_wiring_dict(mid_rotor,int(sys.argv[6]),mid_starting_pos)
 
 		#right rotor
 		if(sys.argv[3]=='I'):
@@ -151,7 +151,7 @@ else:
 		else:
 			sys.exit("Invalid rotor, exiting")
 		right_starting_pos = sys.argv[10]
-		curr_right_rotor = create_curr_rotor_wiring_dict(right_rotor,sys.argv[7],right_starting_pos)
+		curr_right_rotor = create_curr_rotor_wiring_dict(right_rotor,int(sys.argv[7]),right_starting_pos)
 
 		#reflector
 		if(sys.argv[4]=='A'):
@@ -171,11 +171,11 @@ else:
 			reflector_mapping[i] = contact_out
 
 		#plugboard pairs
-		if(sys.argv[11]==29):
+		if(sys.argv[11]=='29'):
 			plugboard = plugboard29
-		elif(sys.argv[11]==30):
+		elif(sys.argv[11]=='30'):
 			plugboard = plugboard30
-		elif(sys.argv[11]==31):
+		elif(sys.argv[11]=='31'):
 			plugboard = plugboard31
 		else:
 			sys.exit("Invalid plugboard, exiting")
@@ -204,7 +204,7 @@ else:
 		mid_starting_pos = sys.argv[3]
 		right_starting_pos = sys.argv[4]
 
-		if(sys.argv[1]==29):
+		if(sys.argv[1]=='29'):
 			left_rotor = rotorIII
 			left_notch = notchIII
 			mid_rotor = rotorII
@@ -215,7 +215,7 @@ else:
 			curr_mid_rotor = create_curr_rotor_wiring_dict(mid_rotor,24,mid_starting_pos)
 			curr_right_rotor = create_curr_rotor_wiring_dict(right_rotor,3,right_starting_pos)
 			plugboard = plugboard29
-		elif(sys.argv[1]==30):
+		elif(sys.argv[1]=='30'):
 			left_rotor = rotorIV
 			left_notch = notchIV
 			mid_rotor = rotorIII
@@ -226,7 +226,7 @@ else:
 			curr_mid_rotor = create_curr_rotor_wiring_dict(mid_rotor,26,mid_starting_pos)
 			curr_right_rotor = create_curr_rotor_wiring_dict(right_rotor,2,right_starting_pos)
 			plugboard = plugboard30
-		elif(sys.argv[1]==31):
+		elif(sys.argv[1]=='31'):
 			left_rotor = rotorI
 			left_notch = notchI
 			mid_rotor = rotorV
@@ -240,7 +240,7 @@ else:
 		else:
 			sys.exit("Invalid preset, exiting")
 
-	msg = input("Type in your message (Note, punctuation and spaces will not be encrypted): ")
+	msg = raw_input("Type in your message (Note, punctuation and spaces will not be encrypted): ")
 	print("\n\n")
 	print(enigma(msg,
 				 curr_left_rotor,

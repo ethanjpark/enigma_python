@@ -10,10 +10,13 @@ def step_rotor(rotor):
 	new_dict = {}
 	#rotor is turning towards the operator, so decrement the pin number
 	for contact_in in rotor:
-		temp = contact_in-1
-		if(temp < 1):
-			temp = 26
-		new_dict[temp] = rotor[contact_in]-1
+		new_in = contact_in-1
+		new_out = rotor[contact_in]-1
+		if(new_in < 1):
+			new_in = 26
+		if(new_out < 1):
+			new_out = 26
+		new_dict[new_in] = new_out
 	return new_dict
 
 #pass in the wiring dictionaries populated in input.py
@@ -41,6 +44,7 @@ def enigma(msg,lr,lnotch,lstart,mr,mnotch,mstart,rr,rnotch,rstart,reflector,plug
 			step_left = False
 
 			##### 1. PLUGBOARD ######
+			# print("step 1")
 			#if character needs to be swapped per plugboard
 			if(output_char in plugboard): #char in keys
 				output_char = plugboard[output_char]
@@ -51,6 +55,7 @@ def enigma(msg,lr,lnotch,lstart,mr,mnotch,mstart,rr,rnotch,rstart,reflector,plug
 						break
 
 			##### 2. Stepping the rotors #####
+			# print("step 2")
 			if(alphabet[curr_char_mid] == mnotch):
 				step_left = True
 			if(alphabet[curr_char_right] == rnotch):
@@ -74,15 +79,18 @@ def enigma(msg,lr,lnotch,lstart,mr,mnotch,mstart,rr,rnotch,rstart,reflector,plug
 			curr_char_right = (curr_char_right+1) % len(alphabet) #update rotor position
  
 			##### 3. Rotors #####
+			# print("step 3")
 			entry_out = entry_mapping[output_char]
 			right_out = right_rotor[entry_out] #right rotor substitution
 			mid_out = mid_rotor[right_out] #mid rotor substitution
 			left_out = left_rotor[mid_out] #left rotor substitution
 
 			##### 4. Reflector #####
+			# print("step 4")
 			ref_out = reflector[left_out]
 
 			##### 5. Rotors (again) #####
+			# print("step 5")
 			#going backwards through the rotors, and since the rotor wiring dictionaries are one-directional,
 			#have to go through the connections and find the input contact that connects to the output contact
 			#that we got from the reflector
@@ -101,6 +109,7 @@ def enigma(msg,lr,lnotch,lstart,mr,mnotch,mstart,rr,rnotch,rstart,reflector,plug
 						break
 
 			entry_in = 0
+			# print(right_rotor)
 			while(entry_in == 0): #finding pin to entry
 				for pin_in in right_rotor:
 					if(right_rotor[pin_in] == right_in):
@@ -114,6 +123,7 @@ def enigma(msg,lr,lnotch,lstart,mr,mnotch,mstart,rr,rnotch,rstart,reflector,plug
 					break
 
 			##### 6. Plugboard (again) #####
+			# print("step 6")
 			#if character needs to be swapped per plugboard
 			if(output_char in plugboard): #char in keys
 				output_char = plugboard[output_char]
@@ -124,4 +134,4 @@ def enigma(msg,lr,lnotch,lstart,mr,mnotch,mstart,rr,rnotch,rstart,reflector,plug
 						break
 
 			output_str = output_str + output_char
-			return output_str
+	return output_str
