@@ -11,4 +11,16 @@ http://users.telenet.be/d.rijmenants/en/enigmatech.htm
 
 Usage:
 `python input.py I II III A 1 2 3 A B C 29`
+
 `python input.py 29 A A B C`
+
+
+### File Breakdown
+
+engima.py - the actual polyalphabetic substitution algorithm used by enigma. Algorithm is called by input.py
+
+input.py - command line input argument processing and calling of the algorithm
+
+plugboard.py - Contains the plugboard pairings for the 29th, 30th, and 31st from keylist #649 from link above
+
+rotors.py - Contains the rotor wiring dictionaries for rotors I, II, III, IV, V and reflectors A, B, C
