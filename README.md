@@ -17,7 +17,7 @@ Usage:
 
 ### File Breakdown
 
-engima.py - the actual polyalphabetic substitution algorithm used by enigma. Algorithm is called by input.py
+enigma.py - the actual polyalphabetic substitution algorithm used by enigma. Algorithm is called by input.py
 
 input.py - command line input argument processing and calling of the algorithm
 
